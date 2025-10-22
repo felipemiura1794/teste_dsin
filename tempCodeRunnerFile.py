@@ -1,1 +1,1 @@
-center
+    text_color = "#FFFFFF",

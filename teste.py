@@ -62,7 +62,7 @@ subtitle.pack(pady = (10, 15), anchor = "w", padx = 20)
 # --- Input "Username" ---
 entry1 = customtkinter.CTkEntry( 
     master = frame, 
-    placeholder_text = "Username",
+    placeholder_text = "Email",
     **ENTRY_STYLE
     )
 entry1.pack(pady = (12, 5), padx = 40)
@@ -77,7 +77,7 @@ line1.pack(padx = 40,  fill = "x")
 # --- Input "Password" ---
 entry2 = customtkinter.CTkEntry( 
     master = frame, 
-    placeholder_text = "Password", 
+    placeholder_text = "Senha", 
     show = "*",
     **ENTRY_STYLE
     )
@@ -93,7 +93,7 @@ line2.pack(padx = 40,  fill = "x")
 # --- Forgot Password ---
 fg_password = customtkinter.CTkLabel(
     master = frame,
-    text = "Forgot password?",
+    text = "Esqueceu a senha?",
     **FG_PASSWORD_STYLE
 )
 fg_password.pack(pady = (10, 20), anchor = "e", padx = 40)
@@ -117,16 +117,18 @@ signup_frame.pack(pady=15)
 # --- Not have account 1 ---
 na_account1 = customtkinter.CTkLabel(
     master = signup_frame,
-    text = "Not have account?",
-    font=("Arial", 12)    
+    text = "Não tem uma conta?",
+    font=("Arial", 16)    
     ) 
 na_account1.pack(side = "left")
 
 # --- Not have account 2 ---
 na_account2 = customtkinter.CTkLabel(
     master = signup_frame,
-    text = " Sign in",
-    font=("Arial", 12)    
+    text = " Cadastre-se",
+    font=("Arial", 16, "bold"),
+    text_color = "#FFFFFF",
     ) 
 na_account2.pack(side = "right")
+
 root.mainloop()

@@ -11,7 +11,7 @@ ENTRY_STYLE = {
 }
 
 DESCRIPTION_STYLE = {
-    "font": ("Helvetica", 15),
+    "font": ("Alegreya Sans", 15),
     "text_color": "#BED0D5",
     "justify": "left"
 }
@@ -28,11 +28,19 @@ FG_PASSWORD_STYLE = {
 }
 
 LOG_BUTTON_STYLE = {
-    "command": "login",
-    "font": ("Arial", 16),
+    "font": ("Arial", 20, "bold"),
     "fg_color": "#5FAFBF",
     "hover_color": "#4A9EBF",
+    "text_color": "#FFFFFF",    
     "height": 45,
     "width": 280,
     "corner_radius": 8
+}
+
+RADIO_BUTTON_STYLE = {
+    "fg_color": "#FFFFFF",
+    "hover_color": "#858788",
+    "border_color": "#FFFFFF",
+    "text_color": "white",
+    "font": ("Arial", 14, "bold")   
 }
