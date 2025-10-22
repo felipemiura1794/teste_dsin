@@ -8,8 +8,8 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 root = customtkinter.CTk()
-root.geometry("500x810")
-root.resizable(False, False)
+root.geometry("500x874")
+#root.attributes("-transparentcolor", "white")
 
 def login():
     print("Test")
@@ -22,6 +22,7 @@ frame = customtkinter.CTkFrame(
     corner_radius = 0
     )
 frame.pack(pady = 20, padx = 60, fill = "both", expand = True)
+frame.pack_propagate(False)
 
 # ==================== IMAGE ====================
 try:
@@ -45,8 +46,8 @@ except:
 # --- Login label ---
 label = customtkinter.CTkLabel(
     master = frame,
-    text = "login", 
-    font = ("Georgia", 30),
+    text = "Cadastre-se", 
+    font = ("Georgia", 27),
     text_color = "#FFFFFF"
     )
 label.pack(pady = (30, 15), anchor = "w", padx = 55)
@@ -54,10 +55,10 @@ label.pack(pady = (30, 15), anchor = "w", padx = 55)
 # --- Description ---
 subtitle = customtkinter.CTkLabel(
     master = frame,
-    text = "Acesse seus registros de Drones,\nPatos e até da hora que você fez\num lanchinho!",
+    text = "Te garanto que esse é o melhor (e, por enquanto, \n único) sistema de controle de patos \n que você vai encontrar!",
     **DESCRIPTION_STYLE
 )
-subtitle.pack(pady = (10, 15), anchor = "w", padx = 20)
+subtitle.pack(pady = (10, 15), padx = 30)
 
 # --- Input "Username" ---
 entry1 = customtkinter.CTkEntry( 

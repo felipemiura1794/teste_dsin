@@ -12,9 +12,7 @@ ENTRY_STYLE = {
 
 DESCRIPTION_STYLE = {
     "font": ("Helvetica", 15),
-    "justify": "left",
-    "text_color": "#BED0D5",
-    "width": 300
+    "text_color": "#BED0D5"
 }
 
 LINES_STYLES = {
@@ -37,4 +35,3 @@ LOG_BUTTON_STYLE = {
     "width": 280,
     "corner_radius": 8
 }
-
