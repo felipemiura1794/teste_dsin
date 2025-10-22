@@ -12,7 +12,8 @@ ENTRY_STYLE = {
 
 DESCRIPTION_STYLE = {
     "font": ("Helvetica", 15),
-    "text_color": "#BED0D5"
+    "text_color": "#BED0D5",
+    "justify": "left"
 }
 
 LINES_STYLES = {

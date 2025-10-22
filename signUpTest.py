@@ -9,7 +9,6 @@ customtkinter.set_default_color_theme("dark-blue")
 
 root = customtkinter.CTk()
 root.geometry("500x874")
-#root.attributes("-transparentcolor", "white")
 
 def login():
     print("Test")
@@ -50,12 +49,12 @@ label = customtkinter.CTkLabel(
     font = ("Georgia", 27),
     text_color = "#FFFFFF"
     )
-label.pack(pady = (30, 15), anchor = "w", padx = 55)
+label.pack(pady = (30, 15), anchor = "w", padx = 50)
 
 # --- Description ---
 subtitle = customtkinter.CTkLabel(
     master = frame,
-    text = "Te garanto que esse é o melhor (e, por enquanto, \n único) sistema de controle de patos \n que você vai encontrar!",
+    text = "Te garanto que esse é o melhor (e, \n por enquanto, único) sistema de \n controle de patos que você vai encontrar!",
     **DESCRIPTION_STYLE
 )
 subtitle.pack(pady = (10, 15), padx = 30)
@@ -75,59 +74,74 @@ line1 = customtkinter.CTkFrame(
 )
 line1.pack(padx = 40,  fill = "x")
 
-# --- Input "Password" ---
+# --- Input "Email" ---
 entry2 = customtkinter.CTkEntry( 
     master = frame, 
-    placeholder_text = "Password", 
-    show = "*",
+    placeholder_text = "Email",
     **ENTRY_STYLE
     )
-entry2.pack(pady = (20, 5), padx = 40)
+entry2.pack(pady = (12, 5), padx = 40)
 
-# --- Password line ---
+# --- Email line ---
 line2 = customtkinter.CTkFrame(
     master = frame,
     **LINES_STYLES
 )
 line2.pack(padx = 40,  fill = "x")
 
-# --- Forgot Password ---
-fg_password = customtkinter.CTkLabel(
+# --- Input "Password" ---
+entry3 = customtkinter.CTkEntry( 
+    master = frame, 
+    placeholder_text = "Password", 
+    show = "*",
+    **ENTRY_STYLE
+    )
+entry3.pack(pady = (20, 5), padx = 40)
+
+# --- Password line ---
+line3 = customtkinter.CTkFrame(
     master = frame,
-    text = "Forgot password?",
-    **FG_PASSWORD_STYLE
+    **LINES_STYLES
 )
-fg_password.pack(pady = (10, 20), anchor = "e", padx = 40)
+line3.pack(padx = 40,  fill = "x")
+
+# --- Forgot Password ---
+#fg_password = customtkinter.CTkLabel(
+#    master = frame,
+#    text = "Forgot password?",
+#    **FG_PASSWORD_STYLE
+#)
+#fg_password.pack(pady = (10, 20), anchor = "e", padx = 40)
 
 # --- Button login ---
 log_button = customtkinter.CTkButton (
     master = frame, 
-    text = "login",
+    text = "Cadastrar",
     **LOG_BUTTON_STYLE
     )
 log_button.pack(pady = 12, padx = 10)
 
 # ============== Footer ==============
-# --- Sign up frame ---
-signup_frame = customtkinter.CTkFrame(
+# --- Checkbox frame ---
+checkboxFrame = customtkinter.CTkFrame(
     master = frame,
     fg_color="transparent"
 )
-signup_frame.pack(pady=15)
+checkboxFrame.pack(pady=15)
 
 # --- Not have account 1 ---
-na_account1 = customtkinter.CTkLabel(
-    master = signup_frame,
-    text = "Not have account?",
-    font=("Arial", 12)    
-    ) 
-na_account1.pack(side = "left")
+#na_account1 = customtkinter.CTkLabel(
+#    master = signup_frame,
+#    text = "Not have account?",
+#    font=("Arial", 12)    
+#    ) 
+#na_account1.pack(side = "left")
 
 # --- Not have account 2 ---
-na_account2 = customtkinter.CTkLabel(
-    master = signup_frame,
-    text = " Sign in",
-    font=("Arial", 12)    
-    ) 
-na_account2.pack(side = "right")
+#na_account2 = customtkinter.CTkLabel(
+#    master = signup_frame,
+#    text = " Sign in",
+#    font=("Arial", 12)    
+#    ) 
+#na_account2.pack(side = "right")
 root.mainloop()
