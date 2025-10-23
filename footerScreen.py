@@ -1,0 +1,1 @@
+#criar com classes o footer para nao ter q ficar repetindo o mesmo codigo

@@ -25,7 +25,7 @@ frame = customtkinter.CTkFrame(
 frame.pack(pady = 20, padx = 60, fill = "both", expand = True)
 frame.pack_propagate(False)
 
-# ==================== IMAGE ====================
+# ==================== LOGO IMAGE ====================
 try:
     logo_image = customtkinter.CTkImage(
         light_image = Image.open("duck.png"),
@@ -43,7 +43,7 @@ try:
 except:
     pass
 
-# ==================== LOGIN ====================
+# ==================== LOGIN SECTION ====================
 # --- Login label ---
 label = customtkinter.CTkLabel(
     master = frame,
