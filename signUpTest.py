@@ -8,7 +8,7 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 root = customtkinter.CTk()
-root.geometry("500x810")
+root.geometry("402x874")
 root.resizable(False, False)
 radio_var = customtkinter.IntVar(value=0)
 

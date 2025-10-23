@@ -1,1 +1,1 @@
-    text_color = "#FFFFFF",
+droneImagem
