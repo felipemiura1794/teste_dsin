@@ -1,4 +1,4 @@
-import customtkinter
+import customtkinter as ctk
 from cssInicioScreen import *
 from PIL import Image
 
@@ -175,11 +175,12 @@ droneTitle = customtkinter.CTkLabel(
 droneTitle.pack(anchor="w", padx=25, pady=(0, 10))
 
 # ==================== DRONES CONTAINER ====================
-droneContainer = customtkinter.CTkFrame(
+droneContainer = customtkinter.CTkScrollableFrame(
     master=frame,
     fg_color="transparent",
+    scrollbar_button_color="#DCE7F6",    
 )
-droneContainer.pack(fill="x", padx=25, pady=(0, 10))
+droneContainer.pack(fill="both", padx=25, pady=(0, 10), expand = True)
 
 # ==================== DRONES ====================
 drones_list = []
@@ -215,6 +216,20 @@ drone4 = DroneCard(
     drone_status="Bateria baixa - retornando à base!"
 )
 drones_list.append(drone4)
+# =================== ADICIONAR DRONE ===================
+
+button_add_image = customtkinter.CTkImage(
+    dark_image=Image.open("add.png"),
+    size = (60,60)
+)
+
+button_add = customtkinter.CTkButton(
+    master = frame,
+    image = button_add_image,
+    text = "",
+    fg_color = "transparent"    
+)
+button_add.pack ()
 
 # =================== FOOTER (Pode ser usado em todas as paginas) ===================
 footerFrame = customtkinter.CTkFrame(
