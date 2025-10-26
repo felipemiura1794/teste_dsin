@@ -6,21 +6,21 @@ from PIL import Image
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
-# =================== CLASSE DRONE CARD ===================
-class DroneCard:
+# =================== CLASSE PATO CARD ===================
+class PatoCard:
     
-    def __init__(self, master, drone_name, drone_status, drone_image_path="droneImagem.png"):
+    def __init__(self, master, pato_name, pato_status, pato_image_path="pato.png"):
         self.master = master
-        self.drone_name = drone_name
-        self.drone_status = drone_status
-        self.drone_image_path = drone_image_path
+        self.pato_name = pato_name
+        self.pato_status = pato_status
+        self.pato_image_path = pato_image_path
         
         # Criar o card
         self.frame = None
         self.create_card()
     
     def create_card(self):
-        # Frame principal do drone
+        # Frame principal do pato
         self.frame = customtkinter.CTkFrame(
             master=self.master,
             fg_color="transparent",
@@ -34,21 +34,21 @@ class DroneCard:
         self.frame.grid_columnconfigure(0, weight=0)
         self.frame.grid_columnconfigure(1, weight=1)
         
-        # Imagem do drone
+        # Imagem do pato
         try:
-            drone_image = customtkinter.CTkImage(
-                dark_image=Image.open(self.drone_image_path),
-                size=(70, 70)
+            pato_image = customtkinter.CTkImage(
+                dark_image=Image.open(self.pato_image_path),
+                size=(100, 70)
             )
-            drone_image_label = customtkinter.CTkLabel(
+            pato_image_label = customtkinter.CTkLabel(
                 master=self.frame,
-                image=drone_image,
+                image=pato_image,
                 text=""
             )
-            drone_image_label.image = drone_image
-            drone_image_label.grid(row=0, column=0, padx=(15, 15), pady=15, sticky="w")
+            pato_image_label.image = pato_image
+            pato_image_label.grid(row=0, column=0, padx=(15, 15), pady=15, sticky="w")
         except Exception as e:
-            print(f"Erro ao carregar imagem do drone: {e}")
+            print(f"Erro ao carregar imagem do pato: {e}")
         
         # Frame para os textos
         text_frame = customtkinter.CTkFrame(
@@ -57,10 +57,10 @@ class DroneCard:
         )
         text_frame.grid(row=0, column=1, sticky="w", padx=(0, 15), pady=15)
         
-        # Título do drone
+        # Título do pato
         title = customtkinter.CTkLabel(
             master=text_frame,
-            text=self.drone_name,
+            text=self.pato_name,
             font=("Roboto", 16, "bold"),
             text_color="white",
             anchor="w"
@@ -70,7 +70,7 @@ class DroneCard:
         # Descrição/Status
         description = customtkinter.CTkLabel(
             master=text_frame,
-            text=self.drone_status,
+            text=self.pato_status,
             font=("Roboto", 12),
             text_color="#B0C4DE",
             anchor="w"
@@ -166,57 +166,57 @@ frame.pack(fill="both", expand=True, padx=0, pady=(30,0))
 
 # ==================== CONTEUDO MAIN ====================
 # ----- Seção título -----
-droneTitle = customtkinter.CTkLabel(
+patoTitle = customtkinter.CTkLabel(
     master=frame,
-    text="Meus drones:",
+    text="Patos capturados:",
     font=("Georgia", 24, "bold"),
     text_color="white"
 )
-droneTitle.pack(anchor="w", padx=25, pady=(0, 10))
+patoTitle.pack(anchor="w", padx=25, pady=(0, 10))
 
-# ==================== DRONES CONTAINER ====================
-droneContainer = customtkinter.CTkScrollableFrame(
+# ==================== PATOS CONTAINER ====================
+patoContainer = customtkinter.CTkScrollableFrame(
     master=frame,
     fg_color="transparent",
     scrollbar_button_color="#DCE7F6",    
 )
-droneContainer.pack(fill="both", padx=25, pady=(0, 10), expand = True)
+patoContainer.pack(fill="both", padx=25, pady=(0, 10), expand = True)
 
-# ==================== DRONES ====================
-drones_list = []
+# ==================== PATOS ====================
+patos_list = []
 
-# Criando drones usando a classe
-drone1 = DroneCard(
-    master=droneContainer,
-    drone_name="Drone 1.",
-    drone_status="Nenhum movimento suspeito detectado!"
+# Criando patos usando a classe
+pato1 = PatoCard(
+    master=patoContainer,
+    pato_name="Pato 1.",
+    pato_status="Nenhum movimento suspeito detectado!"
 )
-drones_list.append(drone1)
-drone1.add_separator()
+patos_list.append(pato1)
+pato1.add_separator()
 
-drone2 = DroneCard(
-    master=droneContainer,
-    drone_name="Drone 2.",
-    drone_status="Necessita de reparos!"
+pato2 = PatoCard(
+    master=patoContainer,
+    pato_name="Pato 2.",
+    pato_status="Necessita de reparos!"
 )
-drones_list.append(drone2)
-drone2.add_separator()
+patos_list.append(pato2)
+pato2.add_separator()
 
-drone3 = DroneCard(
-    master=droneContainer,
-    drone_name="Drone 3.",
-    drone_status="Em patrulha na área norte!"
+pato3 = PatoCard(
+    master=patoContainer,
+    pato_name="Pato 3.",
+    pato_status="Em patrulha na área norte!"
 )
-drones_list.append(drone3)
-drone3.add_separator()
+patos_list.append(pato3)
+pato3.add_separator()
 
-drone4 = DroneCard(
-    master=droneContainer,
-    drone_name="Drone 4.",
-    drone_status="Bateria baixa - retornando à base!"
+pato4 = PatoCard(
+    master=patoContainer,
+    pato_name="Pato 4.",
+    pato_status="Bateria baixa - retornando à base!"
 )
-drones_list.append(drone4)
-# =================== ADICIONAR DRONE ===================
+patos_list.append(pato4)
+# =================== ADICIONAR PATO ===================
 
 button_add_image = customtkinter.CTkImage(
     dark_image=Image.open("add.png"),
@@ -258,17 +258,17 @@ try:
     )
     patodexMenu_image_label.grid(row=0, column=0, padx=20, pady=30, sticky="")
     
-    # --- Drones imagem ---
-    droneMenu_image = customtkinter.CTkImage(
+    # --- Patos imagem ---
+    patoMenu_image = customtkinter.CTkImage(
         dark_image=Image.open("droneVetor.png"),
         size=(40, 40)
     )
-    droneMenu_image_label = customtkinter.CTkLabel(
+    patoMenu_image_label = customtkinter.CTkLabel(
         master=footerFrame,
-        image=droneMenu_image, 
+        image=patoMenu_image, 
         text=""
     )
-    droneMenu_image_label.grid(row=0, column=1, pady=30, sticky="")
+    patoMenu_image_label.grid(row=0, column=1, pady=30, sticky="")
     
     # --- Usuário imagem ---
     user2_image = customtkinter.CTkImage(
