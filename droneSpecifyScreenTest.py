@@ -234,10 +234,10 @@ except Exception as e:
 bars_container = ctk.CTkFrame(
     master=frame,
     fg_color="transparent",
-    height=150  # ALTURA FIXA para evitar expansão excessiva
+    height=150
 )
-bars_container.pack(fill="x", pady=(20, 0))  # Mudei de fill="both" para fill="x"
-bars_container.pack_propagate(False)  # Impede que o container altere sua altura
+bars_container.pack(fill="x", pady=(20, 0))
+bars_container.pack_propagate(False)
 
 # =================== BARRAS DE STATUS ===================
 bars_data = [
@@ -268,16 +268,204 @@ subtitle = ctk.CTkLabel(
 )
 subtitle.pack(anchor="w", padx=40, pady=(0))
 
-
-
 # =================== FOOTER FRAME ===================
-footerFrame = customtkinter.CTkFrame(
+footerFrame = ctk.CTkFrame(
     master=root,
     fg_color="transparent"
 )
-footerFrame.pack(fill="y", padx=0, pady=(30,0))
-footerFrame.pack_propagate(False)
+footerFrame.pack(fill="both", expand=True, padx=40, pady=(20, 30))
 
+# Configurar grid 2x2
+footerFrame.grid_columnconfigure(0, weight=1)
+footerFrame.grid_columnconfigure(1, weight=1)
+footerFrame.grid_rowconfigure(0, weight=1)
+footerFrame.grid_rowconfigure(1, weight=1)
 
+# =================== CAIXAS DE INFORMAÇÕES ===================
+# Caixa 1: Fabricante
+box1 = ctk.CTkFrame(
+    master=footerFrame,
+    fg_color="#44959E",
+    corner_radius=10,
+    width=150,
+    height=70
+)
+box1.grid(row=0, column=0, padx=(0, 5), pady=(0, 5), sticky="nsew")
+box1.grid_propagate(False)
+
+icon_label1 = ctk.CTkLabel(
+    master=box1,
+    text="🏭",
+    font=("Roboto", 14),
+    text_color="white"
+)
+icon_label1.pack(anchor="w", padx=10, pady=(8, 0))
+
+title_label1 = ctk.CTkLabel(
+    master=box1,
+    text="Fabricante",
+    font=("Roboto", 12, "bold"),
+    text_color="white",
+    anchor="w"
+)
+title_label1.pack(anchor="w", padx=10)
+
+info_label1 = ctk.CTkLabel(
+    master=box1,
+    text="DJI",
+    font=("Roboto", 10),
+    text_color="#E0E0E0",
+    anchor="w",
+    justify="left"
+)
+info_label1.pack(anchor="w", padx=10, pady=(0, 8))
+
+# Caixa 2: Ataque
+box2 = ctk.CTkFrame(
+    master=footerFrame,
+    fg_color="#44959E",
+    corner_radius=10,
+    width=150,
+    height=70
+)
+box2.grid(row=0, column=1, padx=(5, 0), pady=(0, 5), sticky="nsew")
+box2.grid_propagate(False)
+
+icon_label2 = ctk.CTkLabel(
+    master=box2,
+    text="⚔️",
+    font=("Roboto", 14),
+    text_color="white"
+)
+icon_label2.pack(anchor="w", padx=10, pady=(8, 0))
+
+title_label2 = ctk.CTkLabel(
+    master=box2,
+    text="Ataque",
+    font=("Roboto", 12, "bold"),
+    text_color="white",
+    anchor="w"
+)
+title_label2.pack(anchor="w", padx=10)
+
+info_label2 = ctk.CTkLabel(
+    master=box2,
+    text="Laser",
+    font=("Roboto", 10),
+    text_color="#E0E0E0",
+    anchor="w",
+    justify="left"
+)
+info_label2.pack(anchor="w", padx=10, pady=(0, 8))
+
+# Caixa 3: Velocidade
+box3 = ctk.CTkFrame(
+    master=footerFrame,
+    fg_color="#44959E",
+    corner_radius=10,
+    width=150,
+    height=70
+)
+box3.grid(row=1, column=0, padx=(0, 5), pady=(5, 0), sticky="nsew")
+box3.grid_propagate(False)
+
+icon_label3 = ctk.CTkLabel(
+    master=box3,
+    text="⚡",
+    font=("Roboto", 14),
+    text_color="white"
+)
+icon_label3.pack(anchor="w", padx=10, pady=(8, 0))
+
+title_label3 = ctk.CTkLabel(
+    master=box3,
+    text="Velocidade",
+    font=("Roboto", 12, "bold"),
+    text_color="white",
+    anchor="w"
+)
+title_label3.pack(anchor="w", padx=10)
+
+info_label3 = ctk.CTkLabel(
+    master=box3,
+    text="33 m/s",
+    font=("Roboto", 10),
+    text_color="#E0E0E0",
+    anchor="w",
+    justify="left"
+)
+info_label3.pack(anchor="w", padx=10, pady=(0, 8))
+
+# Caixa 4: Precisão
+box4 = ctk.CTkFrame(
+    master=footerFrame,
+    fg_color="#44959E",
+    corner_radius=10,
+    width=150,
+    height=70
+)
+box4.grid(row=1, column=1, padx=(5, 0), pady=(5, 0), sticky="nsew")
+box4.grid_propagate(False)
+
+icon_label4 = ctk.CTkLabel(
+    master=box4,
+    text="🎯",
+    font=("Roboto", 14),
+    text_color="white"
+)
+icon_label4.pack(anchor="w", padx=10, pady=(8, 0))
+
+title_label4 = ctk.CTkLabel(
+    master=box4,
+    text="Precisão",
+    font=("Roboto", 12, "bold"),
+    text_color="white",
+    anchor="w"
+)
+title_label4.pack(anchor="w", padx=10)
+
+info_label4 = ctk.CTkLabel(
+    master=box4,
+    text="± 1.5 cm",
+    font=("Roboto", 10),
+    text_color="#E0E0E0",
+    anchor="w",
+    justify="left"
+)
+info_label4.pack(anchor="w", padx=10, pady=(0, 8))
+
+# =================== BOTÃO DE CONTROLE ===================
+try:
+    # Frame do botão
+    control_button_frame = ctk.CTkFrame(
+        master=root,
+        fg_color="transparent"
+    )
+    control_button_frame.pack(fill="x", padx=40, pady=(10, 30))
+    
+    # Botão de controle
+    control_button = ctk.CTkButton(
+        master=control_button_frame,
+        text="CONTROLE",
+        font=("Roboto", 18, "bold"),
+        text_color="white",
+        fg_color="#44959E",
+        hover_color="#3A8089",
+        corner_radius=15,
+        height=60
+    )
+    control_button.pack(fill="x")
+    
+    try:
+        camera_icon = ctk.CTkImage(
+            dark_image=Image.open("camera.png"),
+            size=(30, 30)
+        )
+        control_button.configure(image=camera_icon, compound="right")
+    except:
+        control_button.configure(text="CONTROLE  📷")
+        
+except Exception as e:
+    print(f"Erro ao criar botão de controle: {e}")
 
 root.mainloop()
