@@ -152,7 +152,7 @@ def login():
 # =================== HEADER FRAME ===================
 headerFrame = ctk.CTkFrame(
     master=root,
-    fg_color="#357E94",
+    fg_color="transparent",
     corner_radius=0,
     height=100
 )
@@ -208,12 +208,12 @@ except Exception as e:
 # =================== FRAME MAIN ===================
 frame = ctk.CTkFrame(
     master=root,
-    fg_color="#357E94",
+    fg_color="transparent",
     corner_radius=0
 )
 frame.pack(fill="both", expand=True, padx=0, pady=(30,0))
 
-# =================== BOTÃO X (FECHAR) ===================
+# =================== BOTÃO FECHAR ===================
 try:
     exitImage = ctk.CTkImage(
         dark_image=Image.open("xVetor.png"),
@@ -233,12 +233,13 @@ except Exception as e:
 # =================== CONTAINER PARA AS BARRAS ===================
 bars_container = ctk.CTkFrame(
     master=frame,
-    fg_color="transparent"
+    fg_color="transparent",
+    height=150  # ALTURA FIXA para evitar expansão excessiva
 )
-bars_container.pack(fill="both", expand=True, pady=(20, 0))
+bars_container.pack(fill="x", pady=(20, 0))  # Mudei de fill="both" para fill="x"
+bars_container.pack_propagate(False)  # Impede que o container altere sua altura
 
 # =================== BARRAS DE STATUS ===================
-# Criando as 3 barras de forma organizada
 bars_data = [
     {"image": "vetor.png", "text": "Restam 5h", "position": "first"},
     {"image": "vetor1.png", "text": "Restam 5h", "position": "middle"},
@@ -247,5 +248,36 @@ bars_data = [
 
 for bar_info in bars_data:
     StatusBar(bars_container, bar_info["image"], bar_info["text"], bar_info["position"])
+
+# =================== NOME DRONE ===================
+label = ctk.CTkLabel(
+    master=frame,
+    text="Drone 1", #coloca aqui o nome do drone que puxa do banco de dados depois e tals :P
+    font=("Georgia", 26),
+    text_color="#FFFFFF"
+)
+label.pack(pady=(30, 15), anchor="w", padx=40)
+
+# =================== DESCRIÇÃO ===================
+subtitle = ctk.CTkLabel(
+    master=frame,
+    text="AQUI VAI OS COISO DO DRONE",
+    text_color = "#CFCFCF",
+    font = ("Georgia",16,),
+    justify="left"
+)
+subtitle.pack(anchor="w", padx=40, pady=(0))
+
+
+
+# =================== FOOTER FRAME ===================
+footerFrame = customtkinter.CTkFrame(
+    master=root,
+    fg_color="transparent"
+)
+footerFrame.pack(fill="y", padx=0, pady=(30,0))
+footerFrame.pack_propagate(False)
+
+
 
 root.mainloop()
