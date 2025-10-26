@@ -6,88 +6,6 @@ from PIL import Image
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
-# =================== CLASSE DRONE CARD ===================
-class DroneCard:
-    
-    def __init__(self, master, drone_name, drone_status, drone_image_path="droneImagem.png"):
-        self.master = master
-        self.drone_name = drone_name
-        self.drone_status = drone_status
-        self.drone_image_path = drone_image_path
-        
-        # Criar o card
-        self.frame = None
-        self.create_card()
-    
-    def create_card(self):
-        # Frame principal do drone
-        self.frame = ctk.CTkFrame(
-            master=self.master,
-            fg_color="transparent",
-            corner_radius=10,
-            height=90
-        )
-        self.frame.pack(fill="x", pady=(0, 10))
-        self.frame.pack_propagate(False)
-        
-        # Configuração do grid
-        self.frame.grid_columnconfigure(0, weight=0)
-        self.frame.grid_columnconfigure(1, weight=1)
-        
-        # Imagem do drone
-        try:
-            drone_image = ctk.CTkImage(
-                dark_image=Image.open(self.drone_image_path),
-                size=(70, 70)
-            )
-            drone_image_label = ctk.CTkLabel(
-                master=self.frame,
-                image=drone_image,
-                text=""
-            )
-            drone_image_label.image = drone_image
-            drone_image_label.grid(row=0, column=0, padx=(15, 15), pady=15, sticky="w")
-        except Exception as e:
-            print(f"Erro ao carregar imagem do drone: {e}")
-        
-        # Frame para os textos
-        text_frame = ctk.CTkFrame(
-            master=self.frame,
-            fg_color="transparent"
-        )
-        text_frame.grid(row=0, column=1, sticky="w", padx=(0, 15), pady=15)
-        
-        # Título do drone
-        title = ctk.CTkLabel(
-            master=text_frame,
-            text=self.drone_name,
-            font=("Roboto", 16, "bold"),
-            text_color="white",
-            anchor="w"
-        )
-        title.pack(anchor="w")
-        
-        # Descrição/Status
-        description = ctk.CTkLabel(
-            master=text_frame,
-            text=self.drone_status,
-            font=("Roboto", 12),
-            text_color="#B0C4DE",
-            anchor="w"
-        )
-        description.pack(anchor="w", pady=(2, 0))
-    
-    def add_separator(self):
-        line = ctk.CTkFrame(
-            master=self.master,
-            **LINES_STYLES
-        )
-        line.pack(padx=20, fill="x")
-    
-    def destroy(self):
-        if self.frame:
-            self.frame.destroy()
-
 # =================== CLASSE PARA AS BARRAS ===================
 class StatusBar:
     def __init__(self, master, image_path, text, position):
@@ -99,7 +17,7 @@ class StatusBar:
     
     def create_bar(self):
         try:
-            # Container para a barra (para manter o posicionamento relativo)
+            # Container para a barra
             bar_container = ctk.CTkFrame(
                 master=self.master,
                 fg_color="transparent",
@@ -120,7 +38,6 @@ class StatusBar:
             )
             bar_label.pack()
             
-            # Texto sobre a barra usando place para posicionamento absoluto
             text_label = ctk.CTkLabel(
                 master=bar_label,
                 text=self.text,
@@ -129,7 +46,6 @@ class StatusBar:
                 fg_color="transparent",
                 bg_color="#44959E"
             )
-            # Ajusta posição: "Muito danificado" mais à direita, demais centralizados
             if "danificado" in self.text.lower():
                 text_label.place(relx=0.58, rely=0.5, anchor="center")
             else:
@@ -143,11 +59,6 @@ root = ctk.CTk()
 root.geometry("401x820")
 root.resizable(False, False)
 root.configure(fg_color="#357E94")
-
-radio_var = ctk.IntVar(value=0)
-
-def login():
-    print("Test")
 
 # =================== HEADER FRAME ===================
 headerFrame = ctk.CTkFrame(
@@ -241,30 +152,30 @@ bars_container.pack_propagate(False)
 
 # =================== BARRAS DE STATUS ===================
 bars_data = [
-    {"image": "vetor4.png", "text": "Restam 5h", "position": "first"},
+    {"image": "vetor4.png", "text": "Perigo fatal!", "position": "first"},
 ]
 
 for bar_info in bars_data:
     StatusBar(bars_container, bar_info["image"], bar_info["text"], bar_info["position"])
 
-# =================== NOME DRONE ===================
-label = ctk.CTkLabel(
+# =================== NOME PATO ===================
+pato_label = ctk.CTkLabel(
     master=frame,
-    text="PATO 1", #coloca aqui o nome do drone que puxa do banco de dados depois e tals :P
+    text="PATO 1",
     font=("Georgia", 26),
     text_color="#FFFFFF"
 )
-label.pack(pady=(30, 15), anchor="w", padx=40)
+pato_label.pack(pady=(30, 15), anchor="w", padx=40)
 
 # =================== DESCRIÇÃO ===================
-subtitle = ctk.CTkLabel(
+pato_subtitle = ctk.CTkLabel(
     master=frame,
     text="*descrição pato",
     text_color = "#CFCFCF",
     font = ("Georgia",16,),
     justify="left"
 )
-subtitle.pack(anchor="w", padx=40, pady=(0))
+pato_subtitle.pack(anchor="w", padx=40, pady=(0))
 
 # =================== FOOTER FRAME ===================
 footerFrame = ctk.CTkFrame(
@@ -281,33 +192,33 @@ footerFrame.grid_rowconfigure(1, weight=1)
 
 # =================== CAIXAS DE INFORMAÇÕES ===================
 # Caixa 1: Altura
-box1 = ctk.CTkFrame(
+pato_box1 = ctk.CTkFrame(
     master=footerFrame,
     fg_color="#44959E",
     corner_radius=10
 )
-box1.grid(row=0, column=0, padx=(0, 5), pady=(0, 5), sticky="nsew")
+pato_box1.grid(row=0, column=0, padx=(0, 5), pady=(0, 5), sticky="nsew")
 
-icon_label1 = ctk.CTkLabel(
-    master=box1,
+pato_icon_label1 = ctk.CTkLabel(
+    master=pato_box1,
     text="🏭",
     font=("Roboto", 14),
     text_color="white"
 )
-icon_label1.pack(anchor="w", padx=10, pady=(8, 0))
+pato_icon_label1.pack(anchor="w", padx=10, pady=(8, 0))
 
-title_label1 = ctk.CTkLabel(
-    master=box1,
+pato_title_label1 = ctk.CTkLabel(
+    master=pato_box1,
     text="Altura",
     font=("Roboto", 12, "bold"),
     text_color="white",
     anchor="w",
     wraplength=130
 )
-title_label1.pack(anchor="w", padx=10, fill="x")
+pato_title_label1.pack(anchor="w", padx=10, fill="x")
 
-info_label1 = ctk.CTkLabel(
-    master=box1,
+pato_info_label1 = ctk.CTkLabel(
+    master=pato_box1,
     text="100 centímetros",
     font=("Roboto", 10),
     text_color="#E0E0E0",
@@ -315,36 +226,36 @@ info_label1 = ctk.CTkLabel(
     justify="left",
     wraplength=130
 )
-info_label1.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
+pato_info_label1.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
 
 # Caixa 2: Batimentos Cardiacos
-box2 = ctk.CTkFrame(
+pato_box2 = ctk.CTkFrame(
     master=footerFrame,
     fg_color="#44959E",
     corner_radius=10
 )
-box2.grid(row=0, column=1, padx=(5, 0), pady=(0, 5), sticky="nsew")
+pato_box2.grid(row=0, column=1, padx=(5, 0), pady=(0, 5), sticky="nsew")
 
-icon_label2 = ctk.CTkLabel(
-    master=box2,
+pato_icon_label2 = ctk.CTkLabel(
+    master=pato_box2,
     text="⚔️",
     font=("Roboto", 14),
     text_color="white"
 )
-icon_label2.pack(anchor="w", padx=10, pady=(8, 0))
+pato_icon_label2.pack(anchor="w", padx=10, pady=(8, 0))
 
-title_label2 = ctk.CTkLabel(
-    master=box2,
+pato_title_label2 = ctk.CTkLabel(
+    master=pato_box2,
     text="Batimentos Cardiacos",
     font=("Roboto", 12, "bold"),
     text_color="white",
     anchor="w",
     wraplength=130
 )
-title_label2.pack(anchor="w", padx=10, fill="x")
+pato_title_label2.pack(anchor="w", padx=10, fill="x")
 
-info_label2 = ctk.CTkLabel(
-    master=box2,
+pato_info_label2 = ctk.CTkLabel(
+    master=pato_box2,
     text="94 BPM",
     font=("Roboto", 10),
     text_color="#E0E0E0",
@@ -352,36 +263,36 @@ info_label2 = ctk.CTkLabel(
     justify="left",
     wraplength=130
 )
-info_label2.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
+pato_info_label2.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
 
 # Caixa 3: Velocidade
-box3 = ctk.CTkFrame(
+pato_box3 = ctk.CTkFrame(
     master=footerFrame,
     fg_color="#44959E",
     corner_radius=10
 )
-box3.grid(row=1, column=0, padx=(0, 5), pady=(5, 0), sticky="nsew")
+pato_box3.grid(row=1, column=0, padx=(0, 5), pady=(5, 0), sticky="nsew")
 
-icon_label3 = ctk.CTkLabel(
-    master=box3,
+pato_icon_label3 = ctk.CTkLabel(
+    master=pato_box3,
     text="⚡",
     font=("Roboto", 14),
     text_color="white"
 )
-icon_label3.pack(anchor="w", padx=10, pady=(8, 0))
+pato_icon_label3.pack(anchor="w", padx=10, pady=(8, 0))
 
-title_label3 = ctk.CTkLabel(
-    master=box3,
+pato_title_label3 = ctk.CTkLabel(
+    master=pato_box3,
     text="Velocidade",
     font=("Roboto", 12, "bold"),
     text_color="white",
     anchor="w",
     wraplength=130
 )
-title_label3.pack(anchor="w", padx=10, fill="x")
+pato_title_label3.pack(anchor="w", padx=10, fill="x")
 
-info_label3 = ctk.CTkLabel(
-    master=box3,
+pato_info_label3 = ctk.CTkLabel(
+    master=pato_box3,
     text="33 m/s",
     font=("Roboto", 10),
     text_color="#E0E0E0",
@@ -389,36 +300,36 @@ info_label3 = ctk.CTkLabel(
     justify="left",
     wraplength=130
 )
-info_label3.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
+pato_info_label3.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
 
 # Caixa 4: Peso
-box4 = ctk.CTkFrame(
+pato_box4 = ctk.CTkFrame(
     master=footerFrame,
     fg_color="#44959E",
     corner_radius=10
 )
-box4.grid(row=1, column=1, padx=(5, 0), pady=(5, 0), sticky="nsew")
+pato_box4.grid(row=1, column=1, padx=(5, 0), pady=(5, 0), sticky="nsew")
 
-icon_label4 = ctk.CTkLabel(
-    master=box4,
+pato_icon_label4 = ctk.CTkLabel(
+    master=pato_box4,
     text="🎯",
     font=("Roboto", 14),
     text_color="white"
 )
-icon_label4.pack(anchor="w", padx=10, pady=(8, 0))
+pato_icon_label4.pack(anchor="w", padx=10, pady=(8, 0))
 
-title_label4 = ctk.CTkLabel(
-    master=box4,
+pato_title_label4 = ctk.CTkLabel(
+    master=pato_box4,
     text="Peso",
     font=("Roboto", 12, "bold"),
     text_color="white",
     anchor="w",
     wraplength=130
 )
-title_label4.pack(anchor="w", padx=10, fill="x")
+pato_title_label4.pack(anchor="w", padx=10, fill="x")
 
-info_label4 = ctk.CTkLabel(
-    master=box4,
+pato_info_label4 = ctk.CTkLabel(
+    master=pato_box4,
     text="30 quilos",
     font=("Roboto", 10),
     text_color="#E0E0E0",
@@ -426,7 +337,7 @@ info_label4 = ctk.CTkLabel(
     justify="left",
     wraplength=130
 )
-info_label4.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
+pato_info_label4.pack(anchor="w", padx=10, pady=(0, 8), fill="x")
 
 # =================== BOTÕES DE CONTROLE ===================
 try:
