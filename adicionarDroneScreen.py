@@ -1,5 +1,6 @@
 import customtkinter
 from cssInicioScreen import *
+from css import *
 from PIL import Image
 
 # --- Aparência do programa ---
@@ -323,232 +324,216 @@ except Exception as e:
     print(f"Erro ao carregar imagens: {e}")
 
 # =================== FRAME MAIN ===================
-frame = customtkinter.CTkFrame(
+frame = customtkinter.CTkScrollableFrame(
     master=root,
     fg_color="#357E94",
-    corner_radius=0
+    corner_radius=0,
+    scrollbar_button_color="#DCE7F6"
 )
-frame.pack(fill="both", expand=True, padx=0, pady=0)
+frame.pack(fill="both", expand=True, pady=0, padx=0)
 
 # ==================== CONTEUDO MAIN ====================
 
-# --- Bem vindo label ---
-mainTitle = customtkinter.CTkLabel(
-    master=frame,
-    text="Bem vindo(a) de volta!",
-    **TITLE_LABEL_STYLE
-)
-mainTitle.pack(pady=(20, 5))
-
-# --- Descrição ---
-description = customtkinter.CTkLabel(
-    master=frame,
-    text="O que está procurando hoje?",
-    **DESCRIPTION_LABEL_STYLE
-)
-description.pack(pady=(0, 20))
-
-# ==================== BOTÕES PRINCIPAIS ====================
-
-# ----- Frame para os 4 botões principais -----
-buttonsFrame = customtkinter.CTkFrame(
-    master=frame,
-    fg_color="#357E94",
-    corner_radius=0,
-    height=120
-)
-buttonsFrame.pack(fill="x", padx=40, pady=(0, 20))
-buttonsFrame.pack_propagate(False)
-
-buttonsFrame.grid_columnconfigure(0, weight=1)
-buttonsFrame.grid_columnconfigure(1, weight=1)
-buttonsFrame.grid_columnconfigure(2, weight=1)
-buttonsFrame.grid_columnconfigure(3, weight=1)
-
-# ==================== BOTÕES IMAGENS ====================
-
-try:
-    # --- Patodex ---
-    patodex_image = customtkinter.CTkImage(
-        dark_image=Image.open("patodex.png"),    
-        size=(60, 60)
-    )
-    patodex_button = customtkinter.CTkButton(
-        master = buttonsFrame,
-        image = patodex_image,        
-        text="Patodex",
-        **BUTTONS_STYLE 
-    )
-    patodex_button.grid(row=0, column=0, padx=3, pady=10)
-    
-    # --- Drones ---
-    drone_image = customtkinter.CTkImage(
-        dark_image=Image.open("drones.png"),
-        size=(60, 60)
-    )
-    drone_button = customtkinter.CTkButton(
-        master = buttonsFrame,
-        image = drone_image,        
-        text="Drones",
-        **BUTTONS_STYLE 
-    )
-    drone_button.grid(row=0, column=1, padx=3, pady=10)
-    
-    # --- Aprender ---
-    aprender_image = customtkinter.CTkImage(
-        dark_image=Image.open("aprender.png"),
-        size=(60, 60)
-    )
-    aprender_button = customtkinter.CTkButton(
-        master = buttonsFrame,
-        image = aprender_image,        
-        text="Aprender",
-        **BUTTONS_STYLE 
-    )
-    aprender_button.grid(row=0, column=2, padx=3, pady=10)
-
-    # --- Suporte ---
-    suporte_image = customtkinter.CTkImage(
-        dark_image=Image.open("suporte.png"),
-        size=(60, 60)
-    )
-    suporte_button = customtkinter.CTkButton(
-        master = buttonsFrame,
-        image = suporte_image,        
-        text="Suporte",
-        **BUTTONS_STYLE 
-    )
-    suporte_button.grid(row=0, column=3, padx=3, pady=10) 
-
-except Exception as e:
-    print(f"Erro ao carregar imagens dos botões: {e}")
-
-# =================== DRONE SEÇÃO ===================
-# ----- Seção título -----
-droneTitle = customtkinter.CTkLabel(
-    master=frame,
-    text="Mais acessados:",
-    font=("Georgia", 24, "bold"),
-    text_color="white"
-)
-droneTitle.pack(anchor="w", padx=25, pady=(0, 10))
-
-# ----- Drone container -----
-droneContainer = customtkinter.CTkFrame(
+# --- Login label ---
+label = customtkinter.CTkLabel(
     master = frame,
-    fg_color = "transparent",
+    text = "Cadastre um novo drone", 
+    font = ("Georgia", 27),
+    text_color = "#FFFFFF"      
+    )
+label.pack(pady = (30, 15), anchor = "w", padx = 40)
+
+# --- Input "Imagem do Drone" ---
+entry_imagem = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Caminho da imagem do drone",
+    **ENTRY_STYLE
 )
-droneContainer.pack(fill = "x", padx = 25, pady = (0, 10))
+entry_imagem.pack(pady = (12, 5), padx = 40)
+# --- Imagem line ---
+line_imagem = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_imagem.pack(padx = 40, fill = "x")
 
-try:
-    # ----- Drone 1 -----
-    drone1_frame = customtkinter.CTkFrame(
-        master = droneContainer,
-        fg_color = "transparent",
-        corner_radius = 10,
-        height = 90
-    )
-    drone1_frame.pack(fill="x", pady=(0, 10))
-    drone1_frame.pack_propagate(False)
+# --- Input "Número de Série" ---
+entry_serial = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Número de série",
+    **ENTRY_STYLE
+)
+entry_serial.pack(pady = (12, 5), padx = 40)
+# --- Serial line ---
+line_serial = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_serial.pack(padx = 40, fill = "x")
 
-    # ----- configuração grid -----
-    drone1_frame.grid_columnconfigure(0, weight=0)
-    drone1_frame.grid_columnconfigure(1, weight=1)
+# --- Radio Button "Status" ---
+label_status = customtkinter.CTkLabel(
+    master = frame,
+    text = "Status:",
+    font = ("Arial", 12)
+)
+label_status.pack(pady = (12, 5), padx = 40, anchor = "w")
 
-    # ----- Drone imagem -----
-    drone1_image = customtkinter.CTkImage(
-        dark_image = Image.open("droneImagem.png"),
-        size = (70, 70)
-    )
-    drone1_image_label = customtkinter.CTkLabel(
-        master=drone1_frame,
-        image=drone1_image,
-        text=""        
-    )
-    drone1_image_label.grid(row=0, column=0, padx=(15, 15), pady=15, sticky="w")
-    
-    # ----- Frame para os textos -----
-    drone1_text_frame = customtkinter.CTkFrame(
-        master=drone1_frame,
-        fg_color="transparent"
-    )
-    drone1_text_frame.grid(row=0, column=1, sticky="w", padx=(0, 15), pady=15)
-    
-    # ----- Título do drone ----- 
-    drone1_title = customtkinter.CTkLabel(
-        master=drone1_text_frame,
-        text="Drone 1.",
-        font=("Roboto", 16, "bold"),
-        text_color="white",
-        anchor="w"
-    )
-    drone1_title.pack(anchor="w")
-    
-    # ----- Descrição -----
-    drone1_desc = customtkinter.CTkLabel(
-        master=drone1_text_frame,
-        text="Nenhum movimento suspeito detectado!",
-        font=("Roboto", 12),
-        text_color="#B0C4DE",
-        anchor="w"
-    )
-    drone1_desc.pack(anchor="w", pady=(2, 0))
-    
-    # =================== SEPARAÇÃO LINHA ===================
-    line = customtkinter.CTkFrame(
-        master = droneContainer,
-        **LINES_STYLES
-    )
-    line.pack(padx = 20,  fill = "x")
+status_var = customtkinter.StringVar(value = "Ativo")
 
-    # ----- DRONE 2 -----
-    drone2_frame = customtkinter.CTkFrame(
-        master = droneContainer,
-        fg_color="transparent",
-        corner_radius=10,
-        height=90
-    )
-    drone2_frame.pack(fill="x", pady=(0, 10))
-    drone2_frame.pack_propagate(False)
-    
-    drone2_frame.grid_columnconfigure(0, weight=0)
-    drone2_frame.grid_columnconfigure(1, weight=1)
-    
-    # ----- Imagem drone 2 -----
-    drone2_img_label = customtkinter.CTkLabel(
-        master=drone2_frame,
-        image=drone1_image,
-        text=""
-    )
-    drone2_img_label.grid(row=0, column=0, padx=(15, 15), pady=15, sticky="w")
-    
-    # ----- Textos drone 2 -----
-    drone2_text_frame = customtkinter.CTkFrame(
-        master=drone2_frame,
-        fg_color="transparent"
-    )
-    drone2_text_frame.grid(row=0, column=1, sticky="w", padx=(0, 15), pady=15)
-    
-    drone2_title = customtkinter.CTkLabel(
-        master=drone2_text_frame,
-        text="Drone 2.",
-        font=("Roboto", 16, "bold"),
-        text_color="white",
-        anchor="w"
-    )
-    drone2_title.pack(anchor="w")
-    
-    drone2_desc = customtkinter.CTkLabel(
-        master=drone2_text_frame,
-        text="Necessita de reparos!",
-        font=("Roboto", 12),
-        text_color="#B0C4DE",
-        anchor="w"
-    )
-    drone2_desc.pack(anchor="w", pady=(2, 0))
-    
-except Exception as e:
-    print(f"Erro ao carregar seção de drones: {e}")
+radio_ativo = customtkinter.CTkRadioButton(
+    master = frame,
+    text = "Ativo",
+    variable = status_var,
+    value = "Ativo"
+)
+radio_ativo.pack(pady = 2, padx = 60, anchor = "w")
+
+radio_inativo = customtkinter.CTkRadioButton(
+    master = frame,
+    text = "Inativo",
+    variable = status_var,
+    value = "Inativo"
+)
+radio_inativo.pack(pady = 2, padx = 60, anchor = "w")
+
+radio_missao = customtkinter.CTkRadioButton(
+    master = frame,
+    text = "Em missão",
+    variable = status_var,
+    value = "Em missão"
+)
+radio_missao.pack(pady = 2, padx = 60, anchor = "w")
+
+# --- Status line ---
+line_status = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_status.pack(padx = 40, fill = "x", pady = (5, 0))
+
+# --- Input "Marca" ---
+entry_marca = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Marca",
+    **ENTRY_STYLE
+)
+entry_marca.pack(pady = (12, 5), padx = 40)
+# --- Marca line ---
+line_marca = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_marca.pack(padx = 40, fill = "x")
+
+# --- Input "Fabricante" ---
+entry_fabricante = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Fabricante",
+    **ENTRY_STYLE
+)
+entry_fabricante.pack(pady = (12, 5), padx = 40)
+# --- Fabricante line ---
+line_fabricante = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_fabricante.pack(padx = 40, fill = "x")
+
+# --- Input "País de Origem" ---
+entry_pais = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "País de origem",
+    **ENTRY_STYLE
+)
+entry_pais.pack(pady = (12, 5), padx = 40)
+# --- País line ---
+line_pais = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_pais.pack(padx = 40, fill = "x")
+
+# --- Input "Nível Atual da Bateria" ---
+entry_bateria = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Nível atual da bateria",
+    **ENTRY_STYLE
+)
+entry_bateria.pack(pady = (12, 5), padx = 40)
+# --- Bateria line ---
+line_bateria = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_bateria.pack(padx = 40, fill = "x")
+
+# --- Input "Taxa de Consumo de Bateria" ---
+entry_taxa_bateria = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Taxa de consumo de bateria",
+    **ENTRY_STYLE
+)
+entry_taxa_bateria.pack(pady = (12, 5), padx = 40)
+# --- Taxa Bateria line ---
+line_taxa_bateria = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_taxa_bateria.pack(padx = 40, fill = "x")
+
+# --- Input "Nível Atual de Combustível" ---
+entry_combustivel = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Nível atual de combustível",
+    **ENTRY_STYLE
+)
+entry_combustivel.pack(pady = (12, 5), padx = 40)
+# --- Combustível line ---
+line_combustivel = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_combustivel.pack(padx = 40, fill = "x")
+
+# --- Input "Taxa de Consumo de Combustível" ---
+entry_taxa_combustivel = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Taxa de consumo de combustível",
+    **ENTRY_STYLE
+)
+entry_taxa_combustivel.pack(pady = (12, 5), padx = 40)
+# --- Taxa Combustível line ---
+line_taxa_combustivel = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_taxa_combustivel.pack(padx = 40, fill = "x")
+
+# --- Input "Nível de Integridade" ---
+entry_integridade = customtkinter.CTkEntry(
+    master = frame,
+    placeholder_text = "Nível de integridade",
+    **ENTRY_STYLE
+)
+entry_integridade.pack(pady = (12, 5), padx = 40)
+# --- Integridade line ---
+line_integridade = customtkinter.CTkFrame(
+    master = frame,
+    **LINES_STYLES
+)
+line_integridade.pack(padx = 40, fill = "x")
+
+btn_cadastrar = customtkinter.CTkButton(
+    master = frame,
+    text = "Cadastrar Drone",
+    font = ("Arial", 16, "bold"),
+    fg_color = "#2A6A7D",
+    hover_color = "#1E4F5F",
+    corner_radius = 8,
+    height = 45
+)
+btn_cadastrar.pack(pady = (30, 40), padx = 40, fill = "x")
 
 # =================== FOOTER (Pode ser usado em todas as paginas) ===================
 # ----- Footer Frame
